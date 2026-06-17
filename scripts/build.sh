@@ -28,7 +28,7 @@ mkdir -p "$BUILT_DIR"/freeroam
 cp freeroamd "$BUILT_DIR"/freeroam/
 #cp config.toml "$BUILT_DIR"/freeroamd
 
-if false
+if true
 then
 	echo "Copying Nilzao-RaceSync..."
 	cd "$SRC_DIR"/sbrw-mp-sync-2018
