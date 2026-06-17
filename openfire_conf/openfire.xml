@@ -59,6 +59,6 @@
       <connectionTimeout>1.0</connectionTimeout> 
     </defaultProvider> 
   </database>  
-  <setup>true</setup>  
+  <setup>false</setup>  
   <fqdn>127.0.0.1</fqdn> 
 </jive>

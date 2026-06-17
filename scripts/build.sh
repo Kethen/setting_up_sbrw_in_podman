@@ -48,7 +48,7 @@ echo "Building Openfire..."
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 cd "$SRC_DIR"/openfire
 sed -i 's#https://maven.atlassian.com/repository/public#https://repo1.maven.org/maven2#' xmppserver/pom.xml
-sed -i 's#<dependencies>#<dependencies><dependency><groupId>javax.xml.bind</groupId><artifactId>jaxb-api</artifactId><version>2.3.1</version></dependency>'<dependency><groupId>org.glassfish.jaxb</groupId><artifactId>jaxb-runtime</artifactId><version>2.3.1</version><scope>runtime</scope></dependency>#' pom.xml
+sed -i 's#<dependencies>#<dependencies><dependency><groupId>javax.xml.bind</groupId><artifactId>jaxb-api</artifactId><version>2.3.1</version></dependency><dependency><groupId>org.glassfish.jaxb</groupId><artifactId>jaxb-runtime</artifactId><version>2.3.1</version><scope>runtime</scope></dependency>#' pom.xml
 #sed -i 's/javax.xml.bind/jaxb-api/' xmppserver/pom.xml
 mvn clean verify -pl distribution -am
 cd distribution/target/distribution-base
