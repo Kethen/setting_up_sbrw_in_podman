@@ -1,0 +1,33 @@
+name: Build package
+
+on: [ push, pull_request, workflow_dispatch ]
+
+jobs:
+  build_pkg:
+    runs-on: ubuntu-24.04
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install podman
+      run: |
+        sudo apt update
+        sudo apt install -y podman
+
+    - name: Set env vars
+      run: |
+        echo "sha_name=$(echo ${GITHUB_SHA} | cut -c1-8)" >> $GITHUB_ENV
+
+    - name: Build
+      run: |
+        podman build -t setting_up_sbrw -f Dockerfile
+        podman save setting_up_sbrw -o setting_up_sbrw.tar
+
+    - name: Push package artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: setting_up_sbrw_${{ env.sha_name }}
+        path: |
+           setting_up_sbrw.tar
+        if-no-files-found: error
