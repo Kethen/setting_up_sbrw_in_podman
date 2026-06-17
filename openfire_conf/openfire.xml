@@ -45,8 +45,8 @@
     <defaultProvider> 
       <driver>com.mysql.cj.jdbc.Driver</driver>  
       <serverURL>jdbc:mysql://localhost:3306/OPENFIRE?rewriteBatchedStatements=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8&amp;serverTimezone=UTC</serverURL>  
-      <username encrypted="true">8e2729cdb5d6018b6c068b7a7f39d8b8e1babb770fd3e4feb25ca135a6dc3716</username>  
-      <password encrypted="true">917a1a6a4280505f65bf3c15757f2fdb7f43470bcda5b43128690c91f180b1044e3f236b8e6d75caa557342e82f3bff8027e87a624f80960</password>  
+      <username encrypted="true">ffe223d096d063546211d183fe5ff23cd53340528c34cae52d8f3976cdee1a5b</username>  
+      <password encrypted="true">d6bb22bb4f8403af62efdb20277700127fe6a88f427c3d096c50eed4b80f03732426ac00d351937d7ed1d4f16e920571c5a5614f7ef711e8</password>  
       <testSQL>select 1</testSQL>  
       <testBeforeUse>false</testBeforeUse>  
       <testAfterUse>false</testAfterUse>  
@@ -59,6 +59,6 @@
       <connectionTimeout>1.0</connectionTimeout> 
     </defaultProvider> 
   </database>  
-  <setup>false</setup>  
-  <fqdn>127.0.0.1</fqdn> 
+  <setup>true</setup>  
+  <fqdn>10.21.0.10</fqdn> 
 </jive>
