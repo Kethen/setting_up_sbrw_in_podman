@@ -40,28 +40,24 @@ If you are using the 2.2.4 linux build and can't add custom server, grab this ve
 
 #### Openfire
 
-admin email: admin@example.com
-admin login: admin
-admin pw: 12345678
-db connection: jdbc:mysql://localhost:3306/OPENFIRE?rewriteBatchedStatements=true&characterEncoding=UTF-8&characterSetResults=UTF-8&serverTimezone=UTC
-sqluser: openfire
-sqlpw: OPENFIRE-SQL-PASSWORD
-
-(system properties) adminConsole.access.allow-wildcards-in-excludes -> true for restapi to work on newer versions of openfire, the current version built in this repo does not have this property
-disable compression for some reason
-Inband Account Registration disabled
-restapi token: InsertOpenfireTokenHere
-
-to change the xmpp domain, one would have to re-run the setup, which can be done by changing /openfire_conf/openfire.xml <setup> from true to false
-during the setup, 'Restrict Admin Console Access' is disable so that the setup page can be accessed outside of the container
+- admin email: admin@example.com
+- admin login: admin
+- admin pw: 12345678
+- db connection: jdbc:mysql://localhost:3306/OPENFIRE?rewriteBatchedStatements=true&characterEncoding=UTF-8&characterSetResults=UTF-8&serverTimezone=UTC
+- sqluser: openfire
+- sqlpw: OPENFIRE-SQL-PASSWORD
+- (system properties) adminConsole.access.allow-wildcards-in-excludes -> true for restapi to work on newer versions of openfire, the current version built in this repo does not have this property
+- disable compression for some reason
+- Inband Account Registration disabled
+- restapi token: InsertOpenfireTokenHere
+- to change the xmpp domain, one would have to re-run the setup, which can be done by changing /openfire_conf/openfire.xml <setup> from true to false
 
 #### Soapbox
 
 (project-defaults.yml)
-sqluser: soapbox
-sqlpw: SOAPBOX-SQL-PASSWORD
-
-soapbox had a single line change to cover our lack of car class list data in our schemas, see /scripts/build.sh
+- sqluser: soapbox
+- sqlpw: SOAPBOX-SQL-PASSWORD
+- soapbox had a single line change to cover our lack of car class list data in our schemas, see `/scripts/build.sh`, will probably figure out the correct db location to set that when I got more time
 
 #### Ports
 
