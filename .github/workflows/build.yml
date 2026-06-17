@@ -12,10 +12,10 @@ jobs:
       with:
         submodules: recursive
 
-    - name: Install podman
+    - name: Install podman and zstd
       run: |
         sudo apt update
-        sudo apt install -y podman
+        sudo apt install -y podman zstd
 
     - name: Set env vars
       run: |
@@ -24,12 +24,12 @@ jobs:
     - name: Build
       run: |
         podman build -t setting_up_sbrw -f Dockerfile
-        podman save setting_up_sbrw -o setting_up_sbrw.tar
+        podman save setting_up_sbrw | zstd -19 > setting_up_sbrw.tar.zst
 
     - name: Push package artifact
       uses: actions/upload-artifact@v4
       with:
         name: setting_up_sbrw_${{ env.sha_name }}
         path: |
-           setting_up_sbrw.tar
+           setting_up_sbrw.tar.zst
         if-no-files-found: error
