@@ -9,6 +9,9 @@ RUN apt update; apt install -y git mariadb-server zip unzip openjdk-11-jdk maven
 # copy scripts
 COPY ["scripts", "/scripts"]
 
+# copy patches
+COPY ["patches", "/patches"]
+
 # fetch source and build once
 RUN bash /scripts/prepare_source.sh
 RUN bash /scripts/build.sh

@@ -1,0 +1,104 @@
+From 64081f2ae8b4c2a2591845b21a80a3a9b509f8c7 Mon Sep 17 00:00:00 2001
+From: Katharine Chui <kwchuiaa@connect.ust.hk>
+Date: Thu, 18 Jun 2026 15:37:11 +0000
+Subject: [PATCH 2/2] revert getAllPersonaByGroup to base openfire restapi
+
+---
+ .../core/xmpp/OpenFireRestApiCli.java         | 52 +++++++++++++++----
+ 1 file changed, 41 insertions(+), 11 deletions(-)
+
+diff --git a/src/main/java/com/soapboxrace/core/xmpp/OpenFireRestApiCli.java b/src/main/java/com/soapboxrace/core/xmpp/OpenFireRestApiCli.java
+index 1631abf4..d425eba2 100644
+--- a/src/main/java/com/soapboxrace/core/xmpp/OpenFireRestApiCli.java
++++ b/src/main/java/com/soapboxrace/core/xmpp/OpenFireRestApiCli.java
+@@ -9,6 +9,7 @@ package com.soapboxrace.core.xmpp;
+ import com.soapboxrace.core.bo.ParameterBO;
+ import com.soapboxrace.core.dao.ChatRoomDAO;
+ import com.soapboxrace.core.jpa.ChatRoomEntity;
++import org.igniterealtime.restclient.entity.MUCRoomEntities;
+ import org.igniterealtime.restclient.entity.MUCRoomEntity;
+ import org.igniterealtime.restclient.entity.UserEntity;
+ 
+@@ -27,7 +28,6 @@ import java.util.ArrayList;
+ import java.util.Arrays;
+ import java.util.List;
+ import java.util.Map;
+-import java.util.stream.Collectors;
+ 
+ @Startup
+ @Singleton
+@@ -74,7 +74,9 @@ public class OpenFireRestApiCli {
+             }
+         }
+ 
+-        return target.request(MediaType.APPLICATION_XML).header("Authorization", openFireToken);
++        Builder request = target.request(MediaType.APPLICATION_XML);
++        request.header("Authorization", openFireToken);
++        return request;
+     }
+ 
+     public void createUpdatePersona(String user, String password) {
+@@ -120,17 +122,45 @@ public class OpenFireRestApiCli {
+         if (!restApiEnabled) {
+             return new ArrayList<>();
+         }
+-        Builder builder = getBuilder("chatrooms/getPersonaGroupMembers", Map.of("userName", "sbrw." + personaId));
+-        GameGroupChatMembers gameGroupChatMembers = builder.get(GameGroupChatMembers.class);
+-
+-        if (gameGroupChatMembers.getMembers() == null) {
++        List<MUCRoomEntity> listRoomEntity = getAllRooms();
++        if (listRoomEntity == null){
+             return new ArrayList<>();
+         }
++        for (MUCRoomEntity entity : listRoomEntity) {
++            String roomName = entity.getRoomName();
++            if (roomName.contains("group.channel.")) {
++                // FIXME: apparently we need to make the request TWICE, first one will always fail for some reason
++                getAllOccupantsInRoom(roomName);
++                List<Long> occupants = getAllOccupantsInRoom(roomName);
++                if (occupants.contains(personaId)){
++                    return occupants;
++                }
++            }
++        }
++        return new ArrayList<>();
++    }
++
++    public List<Long> getAllOccupantsInRoom(String roomName) {
++        Builder builder = getBuilder("chatrooms/" + roomName + "/occupants");
++        OccupantEntities occupantEntities = builder.get(OccupantEntities.class);
++        List<Long> listOfPersona = new ArrayList<>();
++        for (OccupantEntity entity : occupantEntities.getOccupants()) {
++            String jid = entity.getJid();
++            try {
++                Long personaId = Long.parseLong(jid.substring(jid.lastIndexOf('.') + 1));
++                listOfPersona.add(personaId);
++            } catch (Exception e) {
++                //
++            }
++        }
++        return listOfPersona;
++    }
++
++    public List<MUCRoomEntity> getAllRooms() {
++        Builder builder = getBuilder("chatrooms");
++        MUCRoomEntities roomEntities = builder.get(MUCRoomEntities.class);
+ 
+-        return gameGroupChatMembers.getMembers()
+-                .stream()
+-                .map(s -> Long.parseLong(s.split("\\.")[1]))
+-                .collect(Collectors.toList());
++        return roomEntities.getMucRooms();
+     }
+ 
+     public void sendChatAnnouncement(String message) {
+@@ -152,4 +182,4 @@ public class OpenFireRestApiCli {
+ 
+         builder.post(Entity.entity(mucRoomEntity, MediaType.APPLICATION_XML));
+     }
+-}
+\ No newline at end of file
++}
+-- 
+2.43.0
+

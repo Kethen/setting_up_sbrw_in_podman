@@ -1,0 +1,39 @@
+From 6f6a2ef295487dc433bc19e8a9cb9bb2cf5405d0 Mon Sep 17 00:00:00 2001
+From: Katharine Chui <kwchuiaa@connect.ust.hk>
+Date: Thu, 18 Jun 2026 13:40:58 +0000
+Subject: [PATCH] update pom.xml
+
+---
+ pom.xml            | 2 +-
+ xmppserver/pom.xml | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/pom.xml b/pom.xml
+index 891489556..554c81d7b 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -330,7 +330,7 @@
+     </build>
+ 
+     <dependencyManagement>
+-        <dependencies>
++        <dependencies><dependency><groupId>javax.xml.bind</groupId><artifactId>jaxb-api</artifactId><version>2.3.1</version></dependency><dependency><groupId>org.glassfish.jaxb</groupId><artifactId>jaxb-runtime</artifactId><version>2.3.1</version><scope>runtime</scope></dependency>
+             <dependency>
+                 <groupId>${project.groupId}</groupId>
+                 <artifactId>xmppserver</artifactId>
+diff --git a/xmppserver/pom.xml b/xmppserver/pom.xml
+index f3591fca5..40cbb0dca 100644
+--- a/xmppserver/pom.xml
++++ b/xmppserver/pom.xml
+@@ -400,7 +400,7 @@
+     <repositories>
+         <repository>
+             <id>atlassian-public</id>
+-            <url>https://maven.atlassian.com/repository/public</url>
++            <url>https://repo1.maven.org/maven2</url>
+             <snapshots>
+                 <enabled>true</enabled>
+                 <updatePolicy>never</updatePolicy>
+-- 
+2.43.0
+
