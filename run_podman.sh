@@ -9,7 +9,7 @@ fi
 
 if ! podman image exists $IMAGE_TAG
 then
-	podman image build -t $IMAGE_TAG -f Dockerfile
+	podman image build -t $IMAGE_TAG -f Dockerfile --no-cache --layers=false
 fi
 
 mkdir -p db

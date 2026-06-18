@@ -19,3 +19,6 @@ RUN sed -i "s/'ENABLE_REDIS','true'/'ENABLE_REDIS','false'/" '/scripts/sql/3. Da
 
 # create directory for mysql
 RUN mkdir -p /run/mysqld
+
+# cleanup apt
+RUN apt clean

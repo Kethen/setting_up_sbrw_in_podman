@@ -23,7 +23,7 @@ jobs:
 
     - name: Build
       run: |
-        podman build -t setting_up_sbrw -f Dockerfile
+        podman build -t setting_up_sbrw -f Dockerfile --no-cache --layers=false
         podman save setting_up_sbrw | zstd -19 > setting_up_sbrw.tar.zst
 
     - name: Push package artifact
