@@ -39,7 +39,7 @@ If you are using the 2.2.4 linux build and can't add custom server, grab this ve
 - disable compression for some reason
 - Inband Account Registration disabled
 - restapi token: InsertOpenfireTokenHere
-- to change the xmpp domain, one would normally have to re-run the setup, which can be done by changing /openfire_conf/openfire.xml <setup> from true to false, but changing openfire.xml seems to be enough in most cases
+- to change the xmpp domain, one would normally have to re-run the setup, which can be done by changing /openfire_conf/openfire.xml <setup> from true to false, but changing openfire.xml & property xmpp.domain seems to be enough in most cases
 
 #### Soapbox
 
