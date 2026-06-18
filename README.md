@@ -1,5 +1,7 @@
 ## setting_up_sbrw_in_podman
 
+sbrw server in podman based on https://github.com/berkayylmao/setting-up-sbrw
+
 ### Starting server
 
 For example starting a server on `192.168.1.107`
