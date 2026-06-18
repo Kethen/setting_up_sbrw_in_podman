@@ -15,6 +15,7 @@ fi
 mkdir -p db
 mkdir -p logs
 mkdir -p http_root
+mkdir -p persist
 
 INTERNAL_PORTS=""
 # openfire panel
@@ -61,6 +62,7 @@ podman run \
 	-v ./logs:/logs \
 	-v ./http_root:/http_root \
 	-v ./openfire_conf:/soap/built/openfire/conf \
+	-v ./persist:/persist \
 	$INTERNAL_PORTS \
 	$EXTERNAL_PORTS \
 	$IMAGE_TAG
