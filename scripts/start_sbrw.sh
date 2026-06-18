@@ -20,6 +20,7 @@ sleep 10
 
 bash /scripts/set_server_address.sh $server
 bash /scripts/enable_modding.sh $server
+bash /scripts/change_openfire_server.sh $server
 
 start_openfire () {
 	cd "$BUILT_DIR"/openfire
