@@ -52,6 +52,10 @@ start_http () {
 	php -S 0.0.0.0:8081
 }
 
+start_valkey () {
+	valkey-server
+}
+
 respawn () {
 	command=$1
 	log_file=$2
@@ -68,6 +72,7 @@ respawn start_openfire openfire &
 respawn start_freeroam freeroam &
 respawn start_race race &
 respawn start_http http &
+respawn start_valkey valkey &
 
 sleep 10
 
