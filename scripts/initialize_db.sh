@@ -31,7 +31,7 @@ db_to_use="use soapbox;"
 $DB --skip-password <<< $(echo $db_to_use; cat "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/18*.sql "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/19*.sql "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/20*.sql "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/21*.sql "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/25*.sql "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/26*.sql)
 
 # add class list
-$DB --skip-password <<< $(echo "insert into soapbox.parameter(name, value) values('CAR_CLASS_LIST', '872416321|0|249|E;415909161|250|399|D;1866825865|400|499|C;-406473455|500|599|B;-405837480|600|749|A;-2142411446|750|65534|S');")
+$DB --skip-password <<< $(echo "insert into soapbox.parameter(name, value) values('CAR_CLASS_LIST', '869393278|0|49|F;872416321|50|249|E;415909161|250|399|D;1866825865|400|499|C;-406473455|500|599|B;-405837480|600|749|A;-2142411446|750|999|S;86241155|1000|1249|S1;221915816|1250|1499|S2;1526233495|1500|1999|S3;');")
 
 kill $DB_PID
 wait $DB_PID
