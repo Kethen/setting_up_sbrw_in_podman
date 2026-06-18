@@ -22,3 +22,6 @@ RUN mkdir -p /run/mysqld
 
 # cleanup apt
 RUN apt clean
+
+# cleanup maven
+RUN rm -r /root/.m2
