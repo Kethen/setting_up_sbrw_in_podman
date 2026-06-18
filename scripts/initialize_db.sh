@@ -28,7 +28,7 @@ $DB --skip-password <<< $(cat /scripts/sql/*)
 db_to_use="use soapbox;"
 
 # migrate from v2.0.? to v2.1.0
-$DB --skip-password <<< $(echo $db_to_use; cat "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/18*.sql "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/19*.sql "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/20*.sql "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/21*.sql "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/25*.sql)
+$DB --skip-password <<< $(echo $db_to_use; cat "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/18*.sql "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/19*.sql "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/20*.sql "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/21*.sql "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/25*.sql "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/26*.sql)
 
 kill $DB_PID
 wait $DB_PID
