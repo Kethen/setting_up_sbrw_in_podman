@@ -57,7 +57,6 @@ If you are using the 2.2.4 linux build and can't add custom server, grab this ve
 (project-defaults.yml)
 - sqluser: soapbox
 - sqlpw: SOAPBOX-SQL-PASSWORD
-- soapbox had a single line change to cover our lack of car class list data in our schemas, see `/scripts/build.sh`, will probably figure out the correct db location to set that when I got more time
 
 #### Ports
 

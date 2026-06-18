@@ -30,5 +30,8 @@ db_to_use="use soapbox;"
 # migrate from v2.0.? to v2.1.0
 $DB --skip-password <<< $(echo $db_to_use; cat "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/18*.sql "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/19*.sql "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/20*.sql "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/21*.sql "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/25*.sql "$SRC_DIR"/soapbox-race-core/migrations/v200-v210/26*.sql)
 
+# add class list
+$DB --skip-password <<< $(echo "insert into soapbox.parameter(name, value) values('CAR_CLASS_LIST', '872416321|0|249|E;415909161|250|399|D;1866825865|400|499|C;-406473455|500|599|B;-405837480|600|749|A;-2142411446|750|65534|S');")
+
 kill $DB_PID
 wait $DB_PID

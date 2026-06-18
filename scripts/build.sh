@@ -11,7 +11,7 @@ echo "Building SBRW-Core..."
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 cd "$SRC_DIR"/soapbox-race-core
 # workaround not having that data on hand at all
-sed -i 's/throw new RuntimeException("CAR_CLASS_LIST parameter must be set");/carClassList = List.of("872416321|0|249", "415909161|250|399", "1866825865|400|499", "-406473455|500|599", "-405837480|600|749", "-2142411446|750|65534");/' src/main/java/com/soapboxrace/core/bo/PerformanceBO.java
+#sed -i 's/throw new RuntimeException("CAR_CLASS_LIST parameter must be set");/carClassList = List.of("872416321|0|249", "415909161|250|399", "1866825865|400|499", "-406473455|500|599", "-405837480|600|749", "-2142411446|750|65534");/' src/main/java/com/soapboxrace/core/bo/PerformanceBO.java
 mvn clean package
 mkdir -p "$BUILT_DIR"/core
 if ! [ -e "$BUILT_DIR"/core/project-defaults.yml ]
