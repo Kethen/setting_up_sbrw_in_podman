@@ -36,9 +36,9 @@ start_freeroam () {
 
 start_race () {
 	cd "$BUILT_DIR"/race
-	export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
-	$JAVA_HOME/bin/java -jar race.jar 9998
-	#./race
+	#export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+	#$JAVA_HOME/bin/java -jar race.jar 9998
+	./race
 }
 
 start_core () {
