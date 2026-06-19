@@ -21,3 +21,4 @@ set_parameter UDP_FREEROAM_IP $server
 set_parameter UDP_RACE_IP $server
 set_parameter XMPP_IP $server
 set_parameter SERVER_ADDRESS http://${server}:8081
+set_parameter SERVER_INFO_BANNER_URL http://${server}:8081/banner.png
