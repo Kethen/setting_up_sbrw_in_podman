@@ -1,6 +1,6 @@
 set -xe
 
-IMAGE_TAG=setting_up_sbrw
+IMAGE_TAG=setting_up_sbrw_reloaded
 
 if ${UPDATE_IMAGE:-false}
 then
@@ -57,7 +57,7 @@ podman run \
 	--rm -it \
 	--security-opt label=disable \
 	--entrypoint /bin/bash \
-	`#-v ./scripts:/scripts:ro` \
+	-v ./scripts:/scripts:ro \
 	-v ./db:/var/lib/mysql \
 	-v ./logs:/logs \
 	-v ./http_root:/http_root \

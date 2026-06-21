@@ -1,0 +1,62 @@
+From e509829ddac2e4ed195f9f0b35ea153457c4b87d Mon Sep 17 00:00:00 2001
+From: Katharine Chui <kwchuiaa@connect.ust.hk>
+Date: Sun, 21 Jun 2026 18:43:07 +0000
+Subject: [PATCH 1/2] fix some db migration issues
+
+---
+ sql_scripts/0005-USERSTATUS.sql                   |  3 ++-
+ sql_scripts/0014-ADD_CAR_RESTRICTION_TO_EVENT.sql |  2 +-
+ sql_scripts/0015-ADD_SOCIAL_SETTINGS_TO_USER.sql  | 12 ++++++------
+ 3 files changed, 9 insertions(+), 8 deletions(-)
+
+diff --git a/sql_scripts/0005-USERSTATUS.sql b/sql_scripts/0005-USERSTATUS.sql
+index 32c349f8..736b8801 100644
+--- a/sql_scripts/0005-USERSTATUS.sql
++++ b/sql_scripts/0005-USERSTATUS.sql
+@@ -1 +1,2 @@
+-ALTER TABLE `USER` ADD `state` VARCHAR(10) NOT NULL DEFAULT 'OFFLINE' AFTER `maxCarSlots`;
+\ No newline at end of file
++ALTER TABLE user ADD maxCarSlots INT NOT NULL DEFAULT 300;
++ALTER TABLE `USER` ADD `state` VARCHAR(10) NOT NULL DEFAULT 'OFFLINE' AFTER `maxCarSlots`;
+diff --git a/sql_scripts/0014-ADD_CAR_RESTRICTION_TO_EVENT.sql b/sql_scripts/0014-ADD_CAR_RESTRICTION_TO_EVENT.sql
+index 2257361d..02412d9b 100644
+--- a/sql_scripts/0014-ADD_CAR_RESTRICTION_TO_EVENT.sql
++++ b/sql_scripts/0014-ADD_CAR_RESTRICTION_TO_EVENT.sql
+@@ -6,4 +6,4 @@
+ ALTER TABLE EVENT ADD COLUMN carRestriction VARCHAR(500) NULL;
+ 
+ -- Commentaire pour clarifier l'usage
+-COMMENT ON COLUMN EVENT.carRestriction IS 'Liste des noms de voitures autorisées pour cet événement, séparés par des virgules. Correspond aux valeurs name de la table CAR. NULL = aucune restriction.';
+\ No newline at end of file
++-- COMMENT ON COLUMN EVENT.carRestriction IS 'Liste des noms de voitures autorisées pour cet événement, séparés par des virgules. Correspond aux valeurs name de la table CAR. NULL = aucune restriction.';
+diff --git a/sql_scripts/0015-ADD_SOCIAL_SETTINGS_TO_USER.sql b/sql_scripts/0015-ADD_SOCIAL_SETTINGS_TO_USER.sql
+index ba287ec7..d2d5cca6 100644
+--- a/sql_scripts/0015-ADD_SOCIAL_SETTINGS_TO_USER.sql
++++ b/sql_scripts/0015-ADD_SOCIAL_SETTINGS_TO_USER.sql
+@@ -1,16 +1,16 @@
+ -- Add social settings columns to USER table
+ -- These columns store the user's social preferences and settings
+ 
+-ALTER TABLE `USER` ADD `appearOffline` TINYINT(1) NOT NULL DEFAULT 0 AFTER `selectedPersonaIndex`;
++-- ALTER TABLE `USER` ADD `appearOffline` TINYINT(1) NOT NULL DEFAULT 0 AFTER `selectedPersonaIndex`;
+ 
+-ALTER TABLE `USER` ADD `declineGroupInvite` INT NOT NULL DEFAULT 0 AFTER `appearOffline`;
++-- ALTER TABLE `USER` ADD `declineGroupInvite` INT NOT NULL DEFAULT 0 AFTER `appearOffline`;
+ 
+ ALTER TABLE `USER` ADD `declineIncommingFriendRequests` TINYINT(1) NOT NULL DEFAULT 0 AFTER `declineGroupInvite`;
+ 
+-ALTER TABLE `USER` ADD `declinePrivateInvite` INT NOT NULL DEFAULT 0 AFTER `declineIncommingFriendRequests`;
++-- ALTER TABLE `USER` ADD `declinePrivateInvite` INT NOT NULL DEFAULT 0 AFTER `declineIncommingFriendRequests`;
+ 
+-ALTER TABLE `USER` ADD `hideOfflineFriends` TINYINT(1) NOT NULL DEFAULT 0 AFTER `declinePrivateInvite`;
++-- ALTER TABLE `USER` ADD `hideOfflineFriends` TINYINT(1) NOT NULL DEFAULT 0 AFTER `declinePrivateInvite`;
+ 
+-ALTER TABLE `USER` ADD `showNewsOnSignIn` TINYINT(1) NOT NULL DEFAULT 0 AFTER `hideOfflineFriends`;
++-- ALTER TABLE `USER` ADD `showNewsOnSignIn` TINYINT(1) NOT NULL DEFAULT 0 AFTER `hideOfflineFriends`;
+ 
+-ALTER TABLE `USER` ADD `showOnlyPlayersInSameChatChannel` TINYINT(1) NOT NULL DEFAULT 0 AFTER `showNewsOnSignIn`;
+\ No newline at end of file
++ALTER TABLE `USER` ADD `showOnlyPlayersInSameChatChannel` TINYINT(1) NOT NULL DEFAULT 0 AFTER `showNewsOnSignIn`;
+-- 
+2.43.0
+

@@ -9,7 +9,7 @@ mkdir -p "$BUILT_DIR"
 
 echo "Building SBRW-Core..."
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
-cd "$SRC_DIR"/soapbox-race-core
+cd "$SRC_DIR"/SBRW-Reloaded-Core
 # workaround not having that data on hand at all
 mvn clean package
 mkdir -p "$BUILT_DIR"/core

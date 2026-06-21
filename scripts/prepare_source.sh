@@ -25,8 +25,10 @@ clone_commit https://github.com/WorldUnitedNFS/soapbox-race-core aa4eb561d83f455
 cd soapbox-race-core
 git am /patches/soapbox-race-core/*
 cd ..
-#clone_commit https://github.com/SoapboxRaceWorld/soapbox-race-core d3edcd002514eb5265ad44484d79c4d2541ab055
-#git clone https://github.com/SoapboxRaceWorld/soapbox-race-core -b v1.0.3
+clone_commit https://github.com/SBRW-Reloaded/SBRW-Reloaded-Core 818182318022ca645acfaadd38f259fe7f83f626
+cd SBRW-Reloaded-Core
+git am /patches/SBRW-Reloaded-Core/*
+cd ..
 clone_commit https://github.com/VladManyanov/sbrw-mp-sync-2018 a847f5fc98c17715014962debf3a89f0d881a0ac
 clone_commit https://github.com/WorldUnitedNFS/sbrw-race-go 04926d0f742c04d04ad547545ea11a48c1fac5e8
 clone_commit https://github.com/WorldUnitedNFS/freeroam ced3aca6e6230a59e3bf5fce457e69c3041f9e1c

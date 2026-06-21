@@ -1,0 +1,28 @@
+From 9ddea8e0c7ced735265ff25652e90ca3201de0b7 Mon Sep 17 00:00:00 2001
+From: Katharine Chui <kwchuiaa@connect.ust.hk>
+Date: Sun, 21 Jun 2026 18:51:08 +0000
+Subject: [PATCH 2/2] revert group member lookup to base openfire rest api
+
+---
+ .../soapboxrace/core/xmpp/openfire/OpenfireXmppProvider.java | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/src/main/java/com/soapboxrace/core/xmpp/openfire/OpenfireXmppProvider.java b/src/main/java/com/soapboxrace/core/xmpp/openfire/OpenfireXmppProvider.java
+index 386b7f00..e76bbf6b 100644
+--- a/src/main/java/com/soapboxrace/core/xmpp/openfire/OpenfireXmppProvider.java
++++ b/src/main/java/com/soapboxrace/core/xmpp/openfire/OpenfireXmppProvider.java
+@@ -178,7 +178,10 @@ public class OpenfireXmppProvider implements XmppProvider {
+                     String roomName = entity.getRoomName();
+                     
+                     if (roomName.contains("group.channel.")) {
+-                        return getAllOccupantsInRoom(roomName);
++                        List<Long> occupants = getAllOccupantsInRoom(roomName);
++                        if (occupants.contains(personaId)){
++                            return occupants;
++                        }
+                     }
+                 }
+             }
+-- 
+2.43.0
+
